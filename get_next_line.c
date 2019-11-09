@@ -6,7 +6,7 @@
 /*   By: jherrald <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 17:37:04 by jherrald          #+#    #+#             */
-/*   Updated: 2019/11/08 15:25:04 by jherrald         ###   ########.fr       */
+/*   Updated: 2019/11/09 22:47:51 by jherrald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,36 @@
  * ** track our location in *s because it is not needed anymore.
  * */
 
-int		len_line(char **s, char **line)
+int		len_line(char *s, char **line)
 {
-	int		len;
-	char	*temp;
+	size_t		len;
+	size_t		size_whole_line;
+	char		*temp;
 
-	while (*s[len] != '\0' || *s[len] != '\n')
+	size_whole_line = 0;
+	while (*s++)
+		size_whole_line++;
+	len = 0;
+	while (s[len] != '\0' || *s[len] != '\n')
 		len++;
-	if (*s[len] == '\n')
+	if (s[len] == '\n')
 	{
 		*line = ft_substr(*s, 0, len);
-		*temp = ft_strndup(&(*s), len + 1);
+		*temp = ft_substr(*s, len + 1, size_whole_line);
 		free(*s);
-
-		
-
-
+		*s = temp;
+		if (*s[0] == '\0')
+			free(*s);
+	}			
+	else
+	{
+		*line = ft_substr(*s, 0, len);
+		free(*s);
 	}
-			
+	return (1);
 }
+
+
 
 /*
  * ** This is a helper function created to output the results after all the other
@@ -49,6 +60,9 @@ int		len_line(char **s, char **line)
  * ** 0. Else, go to appendline function to return 1 and save the line read at the
  * ** current address of the static variable stored.
  * */ 
+
+
+
 
 /*
  * ** The get_next_line function reads a file and returns the line ending with a
