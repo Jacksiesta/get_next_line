@@ -6,7 +6,7 @@
 /*   By: jherrald <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 11:21:36 by jherrald          #+#    #+#             */
-/*   Updated: 2019/11/09 22:47:53 by jherrald         ###   ########.fr       */
+/*   Updated: 2019/11/09 22:57:15 by jherrald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,14 @@ char	*ft_strndup(const char *s, int n)
 	}
 	new[x] = '\0';
 	return (new);
+}
+
+void	ft_strdel(char **c)
+{
+	if (c)
+	{
+		free(*c)
+		*c = NULL;
+	}
+	return ;
 }

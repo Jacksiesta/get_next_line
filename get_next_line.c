@@ -6,10 +6,11 @@
 /*   By: jherrald <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 17:37:04 by jherrald          #+#    #+#             */
-/*   Updated: 2019/11/09 22:47:51 by jherrald         ###   ########.fr       */
+/*   Updated: 2019/11/09 22:57:17 by jherrald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line.h"
 /*
  * ** This function appends a single line into our line variable. We do this by
  * ** finding the length of the line. If at index len, the character is a newline,
@@ -42,6 +43,7 @@ int		len_line(char *s, char **line)
 		*s = temp;
 		if (*s[0] == '\0')
 			free(*s);
+
 	}			
 	else
 	{
@@ -79,8 +81,6 @@ int		len_line(char *s, char **line)
  * ** a newline is encountered. Finally, we call output function to check what
  * ** should be returned.
  * */
-
-#include "get_next_line.h"
 
 int		get_next_line(int fd, char **line)
 {
