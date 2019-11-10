@@ -6,7 +6,7 @@
 /*   By: jherrald <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 11:21:36 by jherrald          #+#    #+#             */
-/*   Updated: 2019/11/09 22:57:15 by jherrald         ###   ########.fr       */
+/*   Updated: 2019/11/10 18:02:56 by jherrald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (new);
 }
 
-char	*ft_strndup(const char *s, int n)
+char	*ft_strdup(const char *s)
 {
 	int		x;
 	char 	*new;
@@ -47,7 +47,7 @@ char	*ft_strndup(const char *s, int n)
 	if (!(new = (char *)malloc(sizeof(char) * (n + 1))))
 		return (NULL);
 	x = 0;
-	while (x < n)
+	while (s[x] != '\0')
 	{
 		new[x] = s[x];
 		x++;
@@ -64,4 +64,20 @@ void	ft_strdel(char **c)
 		*c = NULL;
 	}
 	return ;
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	int		x;
+
+	x = 0;
+	while (s[x])
+	{
+		if (s[x] == ((char)c)
+			return ((char *)&s[x]);
+		x++;
+	}
+	if (s[x] == (char)c)
+		return ((char *)&s[x]);
+	return (NULL);
 }
