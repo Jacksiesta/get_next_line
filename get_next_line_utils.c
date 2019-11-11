@@ -6,7 +6,7 @@
 /*   By: jherrald <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 11:21:36 by jherrald          #+#    #+#             */
-/*   Updated: 2019/11/10 18:02:56 by jherrald         ###   ########.fr       */
+/*   Updated: 2019/11/11 18:10:11 by jherrald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,30 @@ char	*ft_strchr(const char *s, int c)
 	if (s[x] == (char)c)
 		return ((char *)&s[x]);
 	return (NULL);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	int		x;
+	int		y;
+	char	*join;
+
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
+	x = 0;
+	y = 0;
+	while (s1[x])
+		x++;
+	while (s2[y])
+		y++;
+	if (!(join = (char *)malloc(sizeof(char) * (x + y + 1))))
+		return (NULL);
+	y = 0;
+	while (s1[y++])
+		join[y] = s1[y];
+	x = 0;
+	while (s2[x++])
+		join[y + x] = s2[x];
+	join[y + x] = '\0';
+	return (join);
 }

@@ -6,7 +6,7 @@
 /*   By: jherrald <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 18:18:33 by jherrald          #+#    #+#             */
-/*   Updated: 2019/11/10 18:49:31 by jherrald         ###   ########.fr       */
+/*   Updated: 2019/11/11 20:03:27 by jherrald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		result(char **s, char **line, int res, int fd)
 
 int		get_next_line(int fd, char **line)
 {
-	char			buff[BUFFER_SIZE + 1]
+	char			buff[BUFFER_SIZE + 1];
 	static char		x[fd];
 	char			*temp;
 	int				res;
@@ -62,12 +62,13 @@ int		get_next_line(int fd, char **line)
 	while ((res = read(fd, buff, BUFFER_SIZE)) > 0)
 	{
 		buff[res] = '\0';
-		if (x[fd] == NULL)
-			x[fd] = ft_strdup(buff);
-		temp = ft_strjoin(x[fd], buff);
-		free(x[fd]);
-		x[fd] = temp;
-		if (ft_strchr(x[fd], '\n')
+		if (x[fd] == NULL) //check if pointer is empty
+			x[fd] = ft_strdup(buff); // malloc 
+		else
+			temp = ft_strjoin(x[fd], buff);
+			free(x[fd]);
+			x[fd] = temp;
+		if (ft_strchr(x[fd], '\n'))
 			break;
 	}
 	if (res < 0)
@@ -75,5 +76,5 @@ int		get_next_line(int fd, char **line)
 	if (res == 0)
 		return (0);
 	return (result(*x, *line, res, fd));
-
+}
 		
