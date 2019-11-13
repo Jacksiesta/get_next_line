@@ -6,7 +6,7 @@
 /*   By: jherrald <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 18:18:33 by jherrald          #+#    #+#             */
-/*   Updated: 2019/11/11 20:03:27 by jherrald         ###   ########.fr       */
+/*   Updated: 2019/11/13 20:59:23 by jherrald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ int		len_line(char *s, char **line)
 		len++;
 	if (s[len] == '\n')
 	{
-		*line = ft_substr(*s, 0, len);
-		*temp = ft_substr(*s, len + 1, size_whole_line);
-		free(*s);
+		*line = ft_substr(s, 0, len);
+		*temp = ft_strdup((char const)*s);
+		free(s);
 		*s = temp;
-		if (*s[0] == '\0')
+		if (s[len] == '\0')
 			ft_strdel(*s);
 	}
 	else
