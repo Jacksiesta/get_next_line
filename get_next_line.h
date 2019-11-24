@@ -5,25 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jherrald <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/08 11:38:15 by jherrald          #+#    #+#             */
-/*   Updated: 2019/11/13 21:00:52 by jherrald         ###   ########.fr       */
+/*   Created: 2019/11/24 19:45:47 by jherrald          #+#    #+#             */
+/*   Updated: 2019/11/24 20:48:59 by jherrald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
+#ifndef	GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# define BUFFER_SIZE 32
+# endif
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 3
+
 # include <unistd.h>
 # include <stdio.h>
-# include <limits.h>
-
+# include <stdlib.h>
+# include <fcntl.h>
+# include <string.h>
 
 int		get_next_line(int fd, char **line);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strdup(const char *s);
-void	ft_strdel(char **c);
-char	*ft_strchr(const char *s, int c);
-int		len_line(char *s, char **line);
-int		result(char **s, char **line, int res, int fd);
 
 #endif
