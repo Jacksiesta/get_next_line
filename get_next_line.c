@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jherrald <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jherrald <jherrald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 19:15:33 by jherrald          #+#    #+#             */
-/*   Updated: 2019/11/24 22:39:24 by jherrald         ###   ########.fr       */
+/*   Updated: 2019/11/29 18:16:36 by jherrald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,49 +83,54 @@ int		get_next_line(int fd, char **line)
 	int				y;
 	static char		*stat;
 
-	if (*stat)
+	if (!(*line = (char *)malloc(sizeof(char) * (strlen(*line) + 1))))
+		return (NULL);
+	*line = "";
+	if (stat && *stat)
 	{
 		if (check_nl(stat, '\n')) // no '\n' in buf //
 		{
 			*line = ft_strdup(stat);
-			printf("stat line is = %s\n", *line);
-			return (0);
+			stat = NULL;
 		}
-		else if (check_nl(stat, '\n') == 0) // '\n' in buf //
+		else // '\n' in buf //
 		{
-			*line = ft_strjoin(*line, stat);
+			x = 0;
+			// if (stat[x++] == '\n')
+			// 	return (1);
+			while (stat[x] != '\n')
+			{
+				temp[x] = stat[x];
+				x++;
+			}
+			temp[x] = '\0';
+			*line = ft_strjoin(*line, temp);
+			stat = ft_memmove(stat, &stat[x + 1], strlen(stat - x));
+			stat[strlen(stat - x)] = '\0';
 			return (1);
 		}
 	}
 	while ((ret = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
-		printf("nbr octet(s) lu(s) = %d\n", ret);
 		buf[ret] = '\0';
 		if (check_nl(buf, '\n')) // no '\n' in buf //
 		{
 			*line = ft_strjoin(*line, buf);
-			printf("line is = %s\n", *line);
-			printf("buf is = %s\n", buf);
 		}
 		else if (check_nl(buf, '\n') == 0) // '\n' in buf //
 		{
 			x = 0;
 			while (buf[x] != '\n')
-			{	
+			{
 				temp[x] = buf[x];
 				x++;
 			}
 			temp[x] = '\0';
 			*line = ft_strjoin(*line, temp);
-			printf("joined = %s\n", *line);
-			printf("x = %d\n", x);
 			y = 0;
+			stat = strdup(&buf[x+1]);
 			while (buf[x + 1] != '\0')
-			{
-				stat[y] = buf[x + 1];
-				y++;
-				x++;
-			}
+				stat[y++] = buf[x++ + 1];
 			return (1);
 		}
 	}
@@ -138,13 +143,14 @@ int main()
 	int nb_line;
 	int fd;
 
-	nb_line = 0;
+	nb_line = 1;
 	if ((fd = open("test.c", O_RDONLY)) == -1)
 		printf("erreur dans le fichier");
-	while (get_next_line(fd, &line) > 0)
+	while (get_next_line(fd, &line) > 0 && nb_line < 10)
 	{
 		printf("line read is : [%d] %s\n", nb_line, line);
 		nb_line++;
-		free(*line);
+		free(line);
 	}	
+	printf("line read is : [%d] %s\n", nb_line, line);
 }
