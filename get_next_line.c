@@ -6,7 +6,7 @@
 /*   By: jherrald <jherrald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 19:15:33 by jherrald          #+#    #+#             */
-/*   Updated: 2019/12/15 19:51:42 by jherrald         ###   ########.fr       */
+/*   Updated: 2019/12/15 20:02:38 by jherrald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,6 @@ char	*ft_strjoin(char **s1, const char *s2)
 
 	if (*s1 == NULL && s2 == NULL)
 		return (NULL);
-	// if (*s1 == NULL)
-	// {
-	// 	free(*s1);
-	// 	return (ft_strdup(s2));
-	// }
 	x = ft_strlen(*s1);
 	y = ft_strlen(s2);
 	if (!(new = (char *)malloc(sizeof(char) * (x + y + 1))))
@@ -53,8 +48,6 @@ char	*ft_strjoin(char **s1, const char *s2)
 		new[y + x] = s2[y];
 	new[y + x] = '\0';
 	free(*s1);
-	// if (*s2)
-	// 	free((void *)(s2));
 	return (new);
 }
 
@@ -66,7 +59,6 @@ int		check_stat(char **line, char temp[BUFFER_SIZE + 1], char *stat)
 	{
 		if (!(*line = ft_strjoin(line, stat)))
 			return (ft_free(&stat, -1));
-		// free(stat);
 		stat = NULL;
 	}
 	else
@@ -102,7 +94,6 @@ int		mini_gnl(char **line, char *buf, char *temp, char **stat)
 			return (ft_free(stat, -1));
 		free(*stat);
 		*stat = NULL;
-	//	printf("stat is %s\n", *stat);
 		if (!(*stat = ft_strdup(&buf[x + 1])))
 			return (ft_free(stat, -1));
 		return (1);
@@ -139,41 +130,41 @@ int		get_next_line(int fd, char **line)
 	return (ret);
 }
 
-int		main(int ac, char **av)
-{
-	char	*line;
-	int		nb_line;
-	int		fd1;
-	int		fd2;
-	int		fd3;
-	int		ret;
+// int		main(int ac, char **av)
+// {
+// 	char	*line;
+// 	int		nb_line;
+// 	int		fd1;
+// 	int		fd2;
+// 	int		fd3;
+// 	int		ret;
 
-	ret = 0;
-	if (ac < 3)
-		return (0);
-	nb_line = 1;
-	if ((fd1 = open(av[1], O_RDONLY)) == -1)
-		printf("le fichier n'existe pas");
-	if ((fd2 = open(av[2], O_RDONLY)) == -1)
-		printf("le fichier n'existe pas");
-	if ((fd3 = open(av[3], O_RDONLY)) == -1)
-		printf("le fichier n'existe pas");
-	line = NULL;
-	while ((ret = get_next_line(fd1, &line)) > 0 && nb_line)
-	{
-		printf("line[%d]: %s\n", nb_line, line);
-		free(line);
-		line = NULL;
-		ret = get_next_line(fd2, &line);
-		printf("line[%d]: %s\n", nb_line, line);
-		line = NULL;
-		ret = get_next_line(fd3, &line);
-		printf("line[%d]: %s\n", nb_line, line);
-		free(line);
-		nb_line++;
-	}
-	free(line);
-}
+// 	ret = 0;
+// 	if (ac < 3)
+// 		return (0);
+// 	nb_line = 1;
+// 	if ((fd1 = open(av[1], O_RDONLY)) == -1)
+// 		printf("le fichier n'existe pas");
+// 	if ((fd2 = open(av[2], O_RDONLY)) == -1)
+// 		printf("le fichier n'existe pas");
+// 	if ((fd3 = open(av[3], O_RDONLY)) == -1)
+// 		printf("le fichier n'existe pas");
+// 	line = NULL;
+// 	while ((ret = get_next_line(fd1, &line)) > 0 && nb_line)
+// 	{
+// 		printf("line[%d]: %s\n", nb_line, line);
+// 		free(line);
+// 		line = NULL;
+// 		ret = get_next_line(fd2, &line);
+// 		printf("line[%d]: %s\n", nb_line, line);
+// 		line = NULL;
+// 		ret = get_next_line(fd3, &line);
+// 		printf("line[%d]: %s\n", nb_line, line);
+// 		free(line);
+// 		nb_line++;
+// 	}
+// 	free(line);
+// }
 
 // int	main(void)
 // {
@@ -194,5 +185,5 @@ int		main(int ac, char **av)
 // 	printf("line read is : [%d] %s\n", nb_line, line);
 // 	printf("%d\n", ret);
 // 	free(line);
-// 	// system("leaks a.out");
+// 	system("leaks a.out");
 // }
