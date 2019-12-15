@@ -6,7 +6,7 @@
 /*   By: jherrald <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 18:18:33 by jherrald          #+#    #+#             */
-/*   Updated: 2019/11/14 14:07:00 by jherrald         ###   ########.fr       */
+/*   Updated: 2019/12/15 18:54:49 by jherrald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ int		len_line(char *s, char **line)
 	}
 	return (1);
 }
+
+/*
+** Ceci est un test pour github
+*/
 
 int		result(char **s, char **line, int res, int fd)
 {
