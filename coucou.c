@@ -1,3 +1,0 @@
-isibfasbascbsc
-csacancoascasoi
-vdd
