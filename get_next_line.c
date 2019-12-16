@@ -6,7 +6,7 @@
 /*   By: jherrald <jherrald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 19:15:33 by jherrald          #+#    #+#             */
-/*   Updated: 2019/12/15 21:01:28 by jherrald         ###   ########.fr       */
+/*   Updated: 2019/12/16 13:22:24 by jherrald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,13 +109,8 @@ int		get_next_line(int fd, char **line)
 	int				x;
 	static char		*stat[OPEN_MAX];
 
-	if (fd < 0 || !line || fd >= OPEN_MAX || BUFFER_SIZE <= 0
-	|| (read(fd, buf, 0) < 0))
-	{
-		if (fd < 0)
-			return (-1);
-		return (ft_free(&stat[fd], -1));
-	}
+	if (fd < 0 || !line || fd >= OPEN_MAX || BUFFER_SIZE <= 0)
+		return (-1);
 	*line = ft_strdup("");
 	if (stat[fd] && *stat[fd])
 		if ((x = check_stat(line, temp, stat[fd])) == 1)
