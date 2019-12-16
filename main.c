@@ -6,7 +6,7 @@
 /*   By: jherrald <jherrald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/15 20:00:28 by jherrald          #+#    #+#             */
-/*   Updated: 2019/12/16 13:21:47 by jherrald         ###   ########.fr       */
+/*   Updated: 2019/12/16 19:32:56 by jherrald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,5 @@ int	main(void)
 	printf("line read is : [%d] %s\n", nb_line, line);
 	printf("%d\n", ret);
 	free(line);
-	system("leaks a.out");
+	// system("leaks a.out");
 }

@@ -6,7 +6,7 @@
 /*   By: jherrald <jherrald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 19:15:33 by jherrald          #+#    #+#             */
-/*   Updated: 2019/12/16 15:27:17 by jherrald         ###   ########.fr       */
+/*   Updated: 2019/12/16 20:14:28 by jherrald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int		check_stat(char **line, char temp[BUFFER_SIZE + 1], char *stat)
 	{
 		if (!(*line = ft_strjoin(line, stat)))
 			return (ft_free(&stat, -1));
+		free(stat);
 		stat = NULL;
 	}
 	else
@@ -87,13 +88,11 @@ int		mini_gnl(char **line, char *buf, char *temp, char **stat)
 	else
 	{
 		x = -1;
-		while (buf[++x] != '\n')
+		while (buf[++x] != '\n' && buf[x])
 			temp[x] = buf[x];
 		temp[x] = '\0';
 		if (!(*line = ft_strjoin(line, temp)))
 			return (ft_free(stat, -1));
-		free(*stat);
-		*stat = NULL;
 		if (!(*stat = ft_strdup(&buf[x + 1])))
 			return (ft_free(stat, -1));
 		return (1);
@@ -107,14 +106,14 @@ int		get_next_line(int fd, char **line)
 	char			buf[BUFFER_SIZE + 1];
 	char			temp[BUFFER_SIZE + 1];
 	int				x;
-	static char		*stat[OPEN_MAX];
+	static char		stat[OPEN_MAX][BUFFER_SIZE + 1];
 
 	if (fd < 0 || !line || fd >= OPEN_MAX || BUFFER_SIZE <= 0)
 		return (-1);
 	*line = ft_strdup("");
 	if (stat[fd] && *stat[fd])
-		if ((x = check_stat(line, temp, stat[fd])) == 1)
-			return (1);
+		if ((x = check_stat(line, temp, stat[fd])) != 0)
+			return (x);
 	while ((ret = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[ret] = '\0';
