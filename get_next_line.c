@@ -6,7 +6,7 @@
 /*   By: jherrald <jherrald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 19:15:33 by jherrald          #+#    #+#             */
-/*   Updated: 2019/12/17 17:31:22 by jherrald         ###   ########.fr       */
+/*   Updated: 2019/12/17 17:53:35 by jherrald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int		check_stat(char **line, char temp[BUFFER_SIZE + 1], char *stat)
 	{
 		if (!(*line = ft_strjoin(line, stat)))
 			return (ft_free(&stat, -1));
-		// free(stat);
 		stat = NULL;
 	}
 	else
