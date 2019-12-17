@@ -6,7 +6,7 @@
 /*   By: jherrald <jherrald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 19:15:33 by jherrald          #+#    #+#             */
-/*   Updated: 2019/12/17 17:53:35 by jherrald         ###   ########.fr       */
+/*   Updated: 2019/12/17 17:56:11 by jherrald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ int		mini_gnl(char **line, char *buf, char *temp, char **stat)
 		temp[x] = '\0';
 		if (!(*line = ft_strjoin(line, temp)))
 			return (ft_free(stat, -1));
+		free(*stat);
+		*stat = NULL;
 		if (!(*stat = ft_strdup(&buf[x + 1])))
 			return (ft_free(stat, -1));
 		return (1);
